@@ -1,0 +1,44 @@
+.text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-direction: row;
+    align-items:center;
+    padding: 0px;
+    gap: 24px;
+    width: 80%;
+    height: 400px;
+    position: absolute;
+    left: 111px;
+    top: 80px;
+
+}
+
+.ilustracao {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    left: 60%;
+    top: 0px;
+}
+.boxtexto{
+    width: 600px;
+    height: 118px;
+}
+.boxbotton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 28px;
+
+    position: absolute;
+    width: 675px;
+    height: 134px;
+    left: calc(50% - 675px/2 - 0.5px);
+    bottom: -650px;
+}
+
+.botoes2{
+    display: flex;
+  }

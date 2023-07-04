@@ -1,0 +1,38 @@
+.header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 111px;
+  gap: 16px;
+
+  position: static;
+  height: 79px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  background: #F2F2F2;
+  border-bottom: 1px solid #BCBCBC;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  
+  width: 100px;
+  height: 30px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.botoes{
+  margin-left: auto; 
+  margin-right: 0;
+
+  display: flex;
+}
