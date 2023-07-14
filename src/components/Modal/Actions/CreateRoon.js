@@ -25,7 +25,7 @@ const CreateRoon =  ({isOpen, setModalOpen}) => {
                             <MenuItem value={3}>Inteiros (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ?)</MenuItem>
                         </Select>
                     <TextField id="roonId" label="Nome da sala" variant="filled" className="TextField"  sx={TextFieldMargin}/>
-                    <Button theme="btn primary" label="Criar uma sala" onClick={setModalOpen}/>
+                    <Button theme="btn primary" onClick={setModalOpen}> Criar uma sala </Button>
                 </FormControl>
             </Box>
         </Modal>

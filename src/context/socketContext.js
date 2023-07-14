@@ -1,29 +1,32 @@
-
-import { createContext, useContext, useEffect, useState } from "react";
-import ioClient, { Socket } from "socket.io-client";
-
-const SOCKET_SERVER_URL = "http://localhost:8080/poker";
-
-const SocketContext = createContext({
-    socket: null,
-});
+import { useState } from 'react';
 
 export const SocketProvider = ({ children }) => {
-    const [socket, setSocket] = useState(null);
 
-    useEffect(() =>{
-        setSocket(ioClient(SOCKET_SERVER_URL));
-    }, []);
-
-    return ( 
-        <SocketContext.Provider 
-            value={{
-                socket,
-            }}
-        >
-            { children }
-        </SocketContext.Provider>
-    );
+    //var client = null;
+//
+    //const componentWillMount =() => {
+    //    const Stomp = require('react-stomp');
+    //    var SockJS = require('sockjs');
+    //    SockJS = new SockJS("http://192.168.0.1:8080/ws");
+    //    client = Stomp.over(SockJS);
+    //    client.connect({}, this.onConnected, this.onError);
+    //}
+//
+    //const logInUser = () => {
+    //    const userName = this.userName.value;
+    //    if(userName.trim()) {
+    //        const data = { username };
+    //        this.setState({ ...data }, () => {
+    //            client.send("/app/join", {}, JSON.stringify({
+    //                ...data
+    //            }));
+    //        });
+    //    }
+    //}
+//
+    //return ( 
+    //    <SocketContext.Provider>
+    //        { children }
+    //    </SocketContext.Provider>
+    //);
 };
-
-export const useSocket = () => useContext(SocketContext);

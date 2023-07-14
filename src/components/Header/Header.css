@@ -36,3 +36,11 @@
 
   display: flex;
 }
+
+.nickname{
+  margin-right: 10px;
+  color: var(--text-theme-color-01, #2C2C2C);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+}

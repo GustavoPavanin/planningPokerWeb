@@ -1,5 +1,5 @@
 import Header from '../../components/Header/Header';
-import './style.css';
+import '../style.css';
 import ilustracao from '../../assets/Ilustração.svg';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ const Home = () => {
 
     return(
 		<>
-			<Header /> 
+			<Header currentScreen='home' /> 
 			<div className="text">
 				<div className='boxtexto'>
 					<h1>O Planning Poker do nosso jeito e com a nossa cara</h1>
@@ -25,8 +25,8 @@ const Home = () => {
 			<div className='boxbotton'>
 				<h1> Crie ou entre em uma sala! </h1>
 				<div className='botoes2'>
-					<Button theme="btn secondary" label="Entrar em uma sala" onClick={() => setOpenModalJoin(true)}/>
-					<Button theme="btn primary" label="Criar uma sala"onClick={() => setOpenModalCreateRoon(true)} />
+					<Button theme="btn secondary" label="Entrar em uma sala" onClick={() => setOpenModalJoin(true)}>Entrar em uma sala</Button>
+					<Button theme="btn primary" label="Criar uma sala" onClick={() => setOpenModalCreateRoon(true)}>Criar uma sala</Button>
 				</div>
 			</div>
 			<JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />

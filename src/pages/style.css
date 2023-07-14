@@ -42,3 +42,11 @@
 .botoes2{
     display: flex;
   }
+
+.item15 {
+    height: 15vh;
+    
+  }
+.item60 {
+    height: 60vh;
+  }

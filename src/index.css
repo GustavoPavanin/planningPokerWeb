@@ -5,7 +5,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   background: #F2F2F2;
 }
-
 h1{
   color: #5C5CFF;
 }
@@ -24,3 +23,10 @@ h3{
   background: #E5E5FF;
   gap: 24px;
 }
+
+.linkStyle {
+  margin: "1rem";
+  text-decoration: "none";
+  color: 'blue';
+};
+

@@ -1,9 +1,12 @@
 import './Button.css'
-
-const Button = ({theme, onClick, label}) => {
+import Copy from '../../assets/file_copy.svg'
+const Button = ({theme, onClick, copy, children}) => {
     return (
         <>
-        <button className={theme} onClick={onClick}>{label}</button>
+        <button className={"btn " +theme} onClick={onClick}>  
+        {copy && <img src={Copy} className='icon'/>}
+        {children}
+        </button>
         </>
     );
 }
