@@ -4,7 +4,7 @@ import Logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 import JoinModal from '../Modal/Actions/JoinRoon';
 import CreateRoonModal from '../Modal/Actions/CreateRoon';
-import { Alert, Snackbar, Typography } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 const Header = ({currentScreen, nickname}) => {
   const [openModalJoin, setOpenModalJoin] = useState(false);
@@ -42,11 +42,7 @@ const Header = ({currentScreen, nickname}) => {
       <JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
 			<CreateRoonModal isOpen={openModalCreateRoon} setModalOpen={() => setOpenModalCreateRoon(!openModalCreateRoon)} />
     </div>
-    <Snackbar severity="success" open={openSnackBar} autoHideDuration={2000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-        Link copiado com sucesso!
-      </Alert>
-    </Snackbar>
+    <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleClose} message="Link copiado com sucesso!" />
     </>
   );
 }

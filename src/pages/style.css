@@ -14,6 +14,12 @@
 
 }
 
+.titulo{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .ilustracao {
     width: 600px;
     height: 600px;
@@ -31,22 +37,23 @@
     align-items: center;
     padding: 0px;
     gap: 28px;
-
     position: absolute;
     width: 675px;
     height: 134px;
     left: calc(50% - 675px/2 - 0.5px);
     bottom: -650px;
 }
-
 .botoes2{
     display: flex;
   }
-
-.item15 {
-    height: 15vh;
+.item20 {
+    height: 19vh;
     
   }
+.item10 {
+    padding: 1vh 7vh;
+    height: 9vh;
+  }
 .item60 {
-    height: 60vh;
+    height: 59vh;
   }
