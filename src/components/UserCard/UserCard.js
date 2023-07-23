@@ -1,10 +1,22 @@
 import { Paper } from "@mui/material"
 import "./UserCard.css"
-const CardUser = ({vote, name}) => {
+import Card from "../../assets/card.svg";
+const CardUser = ({user}) => {
+
     return(
-        <>
-        <Paper variant="outlined" className="item"> {name}</Paper>
-        </>
+        <div className="item">
+            <div className="vertical-center">
+                <Paper sx={{boxShadow: "none", backgroundColor: "transparent"}}>
+                    {user.vote && !user.revealCard &&
+                        <img className='card' src={Card} alt="Card"/>
+                    }
+                    {user.vote && user.revealCard &&
+                        <img className='card' src={Card} alt="Card"/>
+                    }
+                </Paper>
+                <p className="nickName">{user.nickName}</p>
+            </div>
+        </div>
     );
 }
 

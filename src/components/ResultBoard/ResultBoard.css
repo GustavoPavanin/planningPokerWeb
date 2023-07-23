@@ -1,0 +1,38 @@
+.resultBoard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10vh;
+    margin-left: 3vh;
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.title{
+    color: #2C2C2C;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 3vh;
+}
+
+.resultNumber{
+    color: #4D4DF8;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.verticalLine{
+    width: 1px;
+    height: 112px;
+    align-self: stretch;
+    border-color: #5C5CFF;
+    box-sizing: border-box;
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-style: dotted;
+}
