@@ -2,13 +2,13 @@ import {useState} from 'react';
 import './Header.css';
 import Logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
-import JoinModal from '../Modal/Actions/JoinRoon';
-import CreateRoonModal from '../Modal/Actions/CreateRoon';
+import JoinModal from '../Modal/Actions/JoinRoom';
+import CreateRoomModal from '../Modal/Actions/CreateRoom';
 import { Snackbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 const Header = ({currentScreen, nickname}) => {
   const [openModalJoin, setOpenModalJoin] = useState(false);
-	const [openModalCreateRoon, setOpenModalCreateRoon] = useState(false);
+	const [openModalCreateRoom, setOpenModalCreateRoom] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const handleClick = () => {
@@ -30,17 +30,17 @@ const Header = ({currentScreen, nickname}) => {
       {currentScreen === 'home' && (
         <div className='botoes'>
             <Button theme="secondary"  onClick={() => setOpenModalJoin(true)}>Entrar em uma sala</Button>
-            <Button theme="primary" onClick={() => setOpenModalCreateRoon(true)}>Criar uma sala</Button>
+            <Button theme="primary" onClick={() => setOpenModalCreateRoom(true)}>Criar uma sala</Button>
         </div>
       )}
-      {currentScreen === 'roon' && (
+      {currentScreen === 'room' && (
         <div className='botoes'>
           <p className='nickname'>{nickname}</p>
           <Button theme="primary"  copy='true' onClick={copyURL}>Copiar link da sala</Button>
         </div>
       )}
       <JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
-			<CreateRoonModal isOpen={openModalCreateRoon} setModalOpen={() => setOpenModalCreateRoon(!openModalCreateRoon)} />
+			<CreateRoomModal isOpen={openModalCreateRoom} setModalOpen={() => setOpenModalCreateRoom(!openModalCreateRoom)} />
     </div>
     <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleClose} message="Link copiado com sucesso!" />
     </>

@@ -11,11 +11,11 @@ const linkStyle = {
 
 const Join =  ({isOpen, setModalOpen}) => {
     const TextFieldMargin = {"margin-bottom": "24px"};
-    const [roonId, setRoonId] = useState();
+    const [roomId, setRoomId] = useState();
     const [nickName, setNickName] = useState();
 
-    const handleRoon = (id) => {
-        setRoonId(id);
+    const handleRoom = (id) => {
+        setRoomId(id);
     }
     const handleNickName = (nick) => {
         setNickName(nick);
@@ -27,9 +27,9 @@ const Join =  ({isOpen, setModalOpen}) => {
             <Box >
                 <h2 className="label" >Insira abaixo o ID da sala e seu apelido para entrar</h2>
                 <FormControl sx={{width: "100%"}}>
-                    <TextField id="roonId" label="ID da sala" variant="filled" className="TextField"  sx={TextFieldMargin} onChange={(e) => handleRoon(e.target.value)}/>
+                    <TextField id="roomId" label="ID da sala" variant="filled" className="TextField"  sx={TextFieldMargin} onChange={(e) => handleRoom(e.target.value)}/>
                     <TextField id="nickName" label="Seu apelido" variant="filled" className="TextField" sx={TextFieldMargin} onChange={(e) => handleNickName(e.target.value)}/>
-                    <Link to="/roon" style={linkStyle}><Button theme="primary xl no-margin">Entrar na Sala</Button> </Link> 
+                    <Link to="/room" style={linkStyle}><Button theme="primary xl no-margin">Entrar na Sala</Button> </Link> 
                 </FormControl>
             </Box>
         </Modal>

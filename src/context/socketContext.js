@@ -1,32 +1,42 @@
-import { useState } from 'react';
+import { Client } from '@stomp/stompjs';
+import { createContext, useContext, useEffect, useState } from 'react';
+
+
+
+const SocketContext = createContext(
+    {
+        stompClient: null,
+    }
+);
+
+const SOCKET_SERVER_URL = "ws://localhost:8080/ws";
 
 export const SocketProvider = ({ children }) => {
+    const [stompClient, setStompClient] = useState(null);
+    const socket = new WebSocket(SOCKET_SERVER_URL);
+    useEffect(() =>{
+        const client = new Client({
+            webSocketFactory: () => socket,
+            debug: (str) => console.log(str),
+        });
 
-    //var client = null;
-//
-    //const componentWillMount =() => {
-    //    const Stomp = require('react-stomp');
-    //    var SockJS = require('sockjs');
-    //    SockJS = new SockJS("http://192.168.0.1:8080/ws");
-    //    client = Stomp.over(SockJS);
-    //    client.connect({}, this.onConnected, this.onError);
-    //}
-//
-    //const logInUser = () => {
-    //    const userName = this.userName.value;
-    //    if(userName.trim()) {
-    //        const data = { username };
-    //        this.setState({ ...data }, () => {
-    //            client.send("/app/join", {}, JSON.stringify({
-    //                ...data
-    //            }));
-    //        });
-    //    }
-    //}
-//
-    //return ( 
-    //    <SocketContext.Provider>
-    //        { children }
-    //    </SocketContext.Provider>
-    //);
+        client.onConnect = (frame) => {
+            console.log('Conectado ao WebSocket');
+            // Após a conexão, você pode enviar uma mensagem para se juntar a uma sala
+            client.send('/app/joinRoom', {}, JSON.stringify(username));
+          };
+      
+          client.activate();
+        setStompClient(client);
+
+    },[])
+    
+    return(
+        <SocketContext.Provider value = {{stompClient}}>
+            {children}
+        </SocketContext.Provider>
+    );
+
 };
+
+export const useSocket = () => useContext(SocketContext);

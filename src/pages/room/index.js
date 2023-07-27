@@ -6,7 +6,7 @@ import '../style.css';
 import { CardContent, Grid, Card } from '@mui/material';
 import ResultBoard from '../../components/ResultBoard/ResultBoard';
 
-const Roon = ({roonName}) => {
+const Room = ({roomName}) => {
 	const [selected, setSelected] = useState();
 	const [viewResults, setViewResults] = useState(false);
 	const backgroundColor = {backgroundColor: 'transparent', boxShadow: 'none'};
@@ -18,10 +18,10 @@ const Roon = ({roonName}) => {
 	}	
     return(
 		<>
-			<Header currentScreen='roon' nickname={"teste"}/> 
+			<Header currentScreen='room' nickname={"teste"}/> 
 			<Grid container alignItems="stretch" > 
 				<Grid item component={Card} xs={12} className="item10" style={backgroundColor}>
-					<CardContent className='titulo'>Sala: {roonName}{selected}</CardContent>
+					<CardContent className='titulo'>Sala: {roomName}{selected}</CardContent>
 				</Grid>
 			</Grid>
 			<Grid container alignItems="center" > 
@@ -37,4 +37,4 @@ const Roon = ({roonName}) => {
     );
 }
 
-export default Roon;
+export default Room;
