@@ -9,9 +9,10 @@ import CreateRoomModal from '../../components/Modal/Actions/CreateRoom';
 const Home = () => {
 	const [openModalJoin, setOpenModalJoin] = useState(false);
 	const [openModalCreateRoom, setOpenModalCreateRoom] = useState(false);
-
     return(
 		<>
+			<JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
+			<CreateRoomModal isOpen={openModalCreateRoom} setModalOpen={() => setOpenModalCreateRoom(!openModalCreateRoom)} />
 			<Header currentScreen='home' /> 
 			<div className="text">
 				<div className='boxtexto'>
@@ -29,8 +30,7 @@ const Home = () => {
 					<Button theme="btn primary" label="Criar uma sala" onClick={() => setOpenModalCreateRoom(true)}>Criar uma sala</Button>
 				</div>
 			</div>
-			<JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
-			<CreateRoomModal isOpen={openModalCreateRoom} setModalOpen={() => setOpenModalCreateRoom(!openModalCreateRoom)} />
+			
 		</>
     );
 }

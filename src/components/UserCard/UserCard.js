@@ -14,7 +14,7 @@ const CardUser = ({user}) => {
                         <img className='card' src={Card} alt="Card"/>
                     }
                 </Paper>
-                <p className="nickName">{user.nickName}</p>
+                <p className="nickName">{user.userName}</p>
             </div>
         </div>
     );

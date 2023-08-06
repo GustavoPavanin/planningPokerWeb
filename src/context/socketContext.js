@@ -1,38 +1,61 @@
-import { Client } from '@stomp/stompjs';
-import { createContext, useContext, useEffect, useState } from 'react';
-
-
-
-const SocketContext = createContext(
-    {
-        stompClient: null,
-    }
-);
-
-const SOCKET_SERVER_URL = "ws://localhost:8080/ws";
+import { createContext, useContext, useEffect, useState} from 'react';
+import { Stomp } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+const SocketContext = createContext({
+    socket: null,
+    rooms: [],
+});
+const SOCKET_URL = 'http://localhost:8080/ws';
 
 export const SocketProvider = ({ children }) => {
-    const [stompClient, setStompClient] = useState(null);
-    const socket = new WebSocket(SOCKET_SERVER_URL);
-    useEffect(() =>{
-        const client = new Client({
-            webSocketFactory: () => socket,
-            debug: (str) => console.log(str),
-        });
+    const [socket, setSocket] = useState(null);
+    const [rooms, setRooms] = useState([]);
 
-        client.onConnect = (frame) => {
-            console.log('Conectado ao WebSocket');
-            // Após a conexão, você pode enviar uma mensagem para se juntar a uma sala
-            client.send('/app/joinRoom', {}, JSON.stringify(username));
-          };
-      
-          client.activate();
-        setStompClient(client);
+    useEffect(() => {
+        const socket = new SockJS(SOCKET_URL);
+        const stompClient = Stomp.over(socket);
+        stompClient.connect({}, () =>{
+            onConnect(stompClient);
+        }, e => { console.log('error', e); });
 
-    },[])
+        setSocket(stompClient);
+        
+    }, []);
+
+    const onConnect = (stompClient) => {
+        stompClient.subscribe("/topic/roomCreated", onCreateRoom)
+        stompClient.subscribe("/topic/response", onJoin)
+    }
     
+    const onCreateRoom = (payload) => {
+        const room = JSON.parse(payload.body);
+        setRooms([...rooms, room]);
+    }
+    
+    const onJoin = (payload) => {
+        const room = JSON.parse(payload.body);
+        
+        setRooms([...rooms, room]);
+        console.log(room);
+    }
+
+    const getRoom = (id) => {
+        return rooms.filter(room => room.id === id);
+    }
+
+    const getRoomUsers = (id) => {
+        return  getRoom.users;
+    }
+
+    const disconnect = () => {
+        if (socket) {
+            socket.deactivate();
+        }
+        console.log('Desconectado do WebSocket');
+    };
+
     return(
-        <SocketContext.Provider value = {{stompClient}}>
+        <SocketContext.Provider value ={{socket, rooms}}>
             {children}
         </SocketContext.Provider>
     );
