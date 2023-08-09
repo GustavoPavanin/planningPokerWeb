@@ -10,11 +10,13 @@
     border-radius: 16px;
     background: #F2F2F2;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.20);
-    text-align: center;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+}
+
+.modal-content:focus-visible {
+    outline: none;
 }
 
 .modal-overlay{

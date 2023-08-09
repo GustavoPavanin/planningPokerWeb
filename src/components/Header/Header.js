@@ -4,25 +4,35 @@ import Logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 import JoinModal from '../Modal/Actions/JoinRoom';
 import CreateRoomModal from '../Modal/Actions/CreateRoom';
-import { Snackbar } from '@mui/material';
+import { Menu, MenuItem, Snackbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 const Header = ({currentScreen, nickname}) => {
   const [openModalJoin, setOpenModalJoin] = useState(false);
 	const [openModalCreateRoom, setOpenModalCreateRoom] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleClick = () => {
     setOpenSnackBar(true);
   };
 
-  const handleClose = (event) => {
+  const handleClose = () => {
     setOpenSnackBar(false);
   };
 
-  const copyURL = (newState) => {
+  const copyURL = () => {
     navigator.clipboard.writeText(window.location);
     handleClick();
   }
+
   return (
     <>
     <div className='header'>
@@ -35,7 +45,10 @@ const Header = ({currentScreen, nickname}) => {
       )}
       {currentScreen === 'room' && (
         <div className='botoes'>
-          <p className='nickname'>{nickname}</p>
+          <p className='nickname' onClick={handleClickMenu}>{nickname} ˅</p>
+            <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
+              <MenuItem onClick={handleCloseMenu}><Link to="/">Sair da sala</Link></MenuItem>
+            </Menu>
           <Button theme="primary"  copy='true' onClick={copyURL}>Copiar link da sala</Button>
         </div>
       )}

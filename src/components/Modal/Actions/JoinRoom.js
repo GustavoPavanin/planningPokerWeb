@@ -26,7 +26,7 @@ const Join =  ({isOpen, setModalOpen, onlyNick}) => {
 		} else {
 			console.log('Cliente STOMP não está conectado.');
 		}
-        navigate("/room/" + roomId, { state: nickName})
+        navigate("/room/" + roomId, { state: nickName});
 	};
 
     return(

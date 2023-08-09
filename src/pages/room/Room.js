@@ -16,11 +16,13 @@ const Room = () => {
 	const backgroundColor = {backgroundColor: 'transparent', boxShadow: 'none'};
 	const locationInfo = useLocation();
 	const roomId = parseInt(locationInfo.pathname.substring(6));
-
+	
 	useEffect(() => {
 		updateRoom();
 		return () => {
-			socket.unsubscribe("/topic/response");
+			if(socket){
+				socket.unsubscribe("/topic/response");
+			}
         }
 	}, []);
 
@@ -35,7 +37,6 @@ const Room = () => {
 		
 	}
 	const onJoin = (payload) => {
-		console.log("teste1");
         const room = JSON.parse(payload.body);
 		if(room.id == roomId){
 			setRoom(room);
@@ -56,7 +57,7 @@ const Room = () => {
 			<Header currentScreen='room' nickname={locationInfo.state}/> 
 			<Grid container alignItems="stretch" > 
 				<Grid item component={Card} xs={12} className="item10" style={backgroundColor}>
-					<CardContent className='titulo'>Sala: {room.name}</CardContent>
+					<CardContent className='titulo'>Sala: #{roomId} - {room.name}</CardContent>
 				</Grid>
 			</Grid>
 			<Grid container alignItems="center" > 

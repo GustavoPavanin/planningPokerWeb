@@ -3,17 +3,20 @@ import Modal from "../Modal";
 import Button from "../../Button/Button";
 
 import "../../../index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSocket } from "../../../context/socketContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateRoom =  ({isOpen, setModalOpen}) => {
 	const { socket } = useSocket();
 	const TextFieldMargin = {"margin-bottom": "24px"};
 	const [voteSystem, setVoteSystem] = useState("");
 	const [name, setName] = useState("");
+	const navigate = useNavigate();
 
 	const onCreateRoom = () => {
 		if(socket){
+			socket.subscribe("/topic/roomCreated", redirectToRoom);
 			socket.send("/app/createRoom", {}, JSON.stringify({
 				name, voteSystem
 			})); 
@@ -23,6 +26,13 @@ const CreateRoom =  ({isOpen, setModalOpen}) => {
 		
 	};
 
+	const redirectToRoom = (payload) => {
+		const roomInfo = JSON.parse(payload.body);
+		alert(JSON.stringify(roomInfo) + "  ---- " + name + voteSystem);
+		if(roomInfo.name == name && roomInfo.voteSystem == parseInt(voteSystem) && roomInfo.users == []){
+			navigate("/room/" + roomInfo.id);
+		}
+	}
 	return(
 		<Modal isOpen={isOpen} setModalOpen={setModalOpen}>
 			<Box >
