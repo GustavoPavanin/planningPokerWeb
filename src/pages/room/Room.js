@@ -9,17 +9,19 @@ import { useLocation } from 'react-router-dom';
 import { useSocket } from '../../context/socketContext';
 
 const Room = () => {
-	const { socket, rooms } = useSocket();
+	const { socket } = useSocket();
 	const [room, setRoom] = useState({name:"", voteSystem: 0, users: []})
 	const [selected, setSelected] = useState();
 	const [viewResults, setViewResults] = useState(false);
 	const backgroundColor = {backgroundColor: 'transparent', boxShadow: 'none'};
 	const locationInfo = useLocation();
 	const roomId = parseInt(locationInfo.pathname.substring(6));
-	const roomInfo = rooms.filter(room => room.id === roomId)[0];
 
 	useEffect(() => {
 		updateRoom();
+		return () => {
+			socket.unsubscribe("/topic/response");
+        }
 	}, []);
 
 	const updateRoom = () =>{
@@ -44,6 +46,10 @@ const Room = () => {
 		console.log(JSON.stringify(room));
 		// setViewResults(!viewResults);
 	}
+
+	window.onbeforeunload = function(e) {
+		console.log("uau");
+	};
 
     return(
 		<>

@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
-import Room from "./pages/room";
+import Home from "./pages/home/Home";
+import Room from "./pages/room/Room";
 import { SocketProvider } from "./context/socketContext";
+import Hall from "./components/Hall/Hall";
 
 const Router = () => {
     return (
@@ -11,7 +12,8 @@ const Router = () => {
                 <SocketProvider>
                     <Routes>
                         <Route path="*" element={<Home />}/>
-                        <Route path="/room/:roomId" element={<Room />}/>
+                        <Route path="/room/" element={<Room />}/>
+                        <Route path="/room/:roomId" element={<Hall />}/>
                     </Routes>
                 </SocketProvider>
             </BrowserRouter>
