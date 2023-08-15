@@ -12,13 +12,12 @@ const VoteBoard = ({voteType, setSelected, selected}) =>{
         }
         else{
             setSelected(null);
-            
         }
     }
 
     return(
         <div className="voteBoard">
-            {voteType == 1 && fibonacci.map((vote) => <VoteCard id={"card"+vote} vote={vote} handleSelect={handleSelect} selected={selected}/> )}
+            {voteType == 1 && fibonacci.map((vote) => <VoteCard vote={vote} handleSelect={handleSelect} selected={selected}/> )}
             {voteType == 2 && fibonacci_mod.map((vote) => <VoteCard vote={vote} handleSelect={handleSelect} selected={selected}/>)}
             {voteType == 3 && integer.map((vote) => <VoteCard vote={vote} handleSelect={handleSelect} selected={selected}/>)}
         </div>

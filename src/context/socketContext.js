@@ -16,6 +16,13 @@ export const SocketProvider = ({ children }) => {
         
     }, []);
 
+    const joinRoom = (nickName, roomId) =>{
+        socket.send("/app/joinRoom", {}, JSON.stringify({
+            nickName, roomId
+        }));
+    }
+    
+
     return(
         <SocketContext.Provider value ={{socket}}>
             {children}

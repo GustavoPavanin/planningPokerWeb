@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import "./VoteCard.css";
 
-const VoteCard = ({id, vote, handleSelect, selected}) => {
+const VoteCard = ({vote, handleSelect, selected}) => {
+    const id = "card"+vote;
     const verify = () => {
         const element = document.getElementById(id);
         if(element.checked && selected == vote)       

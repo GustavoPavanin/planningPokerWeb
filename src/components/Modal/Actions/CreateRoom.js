@@ -28,8 +28,8 @@ const CreateRoom =  ({isOpen, setModalOpen}) => {
 
 	const redirectToRoom = (payload) => {
 		const roomInfo = JSON.parse(payload.body);
-		alert(JSON.stringify(roomInfo) + "  ---- " + name + voteSystem);
-		if(roomInfo.name == name && roomInfo.voteSystem == parseInt(voteSystem) && roomInfo.users == []){
+		if(roomInfo.name == name){
+			socket.unsubscribe("/topic/roomCreated");
 			navigate("/room/" + roomInfo.id);
 		}
 	}

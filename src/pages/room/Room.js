@@ -5,25 +5,26 @@ import VoteBoard from '../../components/VoteBoard/VoteBoard';
 import '../style.css';
 import { CardContent, Grid, Card } from '@mui/material';
 import ResultBoard from '../../components/ResultBoard/ResultBoard';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSocket } from '../../context/socketContext';
 
 const Room = () => {
 	const { socket } = useSocket();
 	const [room, setRoom] = useState({name:"", voteSystem: 0, users: []})
-	const [selected, setSelected] = useState();
+	const [selected, setSelected] = useState(0);
 	const [viewResults, setViewResults] = useState(false);
 	const backgroundColor = {backgroundColor: 'transparent', boxShadow: 'none'};
 	const locationInfo = useLocation();
 	const roomId = parseInt(locationInfo.pathname.substring(6));
-	
+	const nicknameUser = locationInfo.state;
+	const navigate = useNavigate()
+
+	window.onload = async () => {
+		navigate("/room/" + roomId);
+	};
+
 	useEffect(() => {
 		updateRoom();
-		return () => {
-			if(socket){
-				socket.unsubscribe("/topic/response");
-			}
-        }
 	}, []);
 
 	const updateRoom = () =>{
@@ -33,28 +34,29 @@ const Room = () => {
 		} else {
 			console.log('Cliente STOMP não está conectado.');
 		}
-
-		
 	}
+
 	const onJoin = (payload) => {
         const room = JSON.parse(payload.body);
 		if(room.id == roomId){
+			console.log("igual");
 			setRoom(room);
 		}
     }
 
 	const handleReveal = () => {
-		console.log(JSON.stringify(room));
+		console.log(selected);
 		// setViewResults(!viewResults);
 	}
 
-	window.onbeforeunload = function(e) {
-		console.log("uau");
-	};
+	const onSelect = (vote) =>{
+		setSelected(vote);
+		socket.send("/app/vote", {}, JSON.stringify(vote)); 
+	}
 
     return(
 		<>
-			<Header currentScreen='room' nickname={locationInfo.state}/> 
+			<Header currentScreen='room' nickname={nicknameUser}/> 
 			<Grid container alignItems="stretch" > 
 				<Grid item component={Card} xs={12} className="item10" style={backgroundColor}>
 					<CardContent className='titulo'>Sala: #{roomId} - {room.name}</CardContent>
@@ -65,7 +67,7 @@ const Room = () => {
 					<Table users={room.users} handleReveal={handleReveal} viewResults={viewResults}/>
 				</Grid>
 				<Grid item component={Card} xs={12} className="item20" style={backgroundColor}>
-					{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={setSelected} selected={selected}/>}
+					{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={onSelect} selected={selected}/>}
 					{viewResults && <ResultBoard moda={1} media={2} mediana={3} />}
 				</Grid>
 			</Grid>

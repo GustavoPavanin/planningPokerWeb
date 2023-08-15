@@ -57,3 +57,10 @@
 .item60 {
     height: 59vh;
   }
+
+  .loading{
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    border-radius: 180px;
+}
