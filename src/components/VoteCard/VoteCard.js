@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./VoteCard.css";
+import VoteCardLabel from "./VoteCardLabel";
 
 const VoteCard = ({vote, handleSelect, selected}) => {
     const id = "card"+vote;
@@ -12,7 +13,7 @@ const VoteCard = ({vote, handleSelect, selected}) => {
     return(
         <>
                 <input id={id} type="radio" name="VoteCard" onClick={() => {verify(); handleSelect(vote);}} />
-                <label for={id} className="voteCard">{vote}</label>
+                <VoteCardLabel id={id} vote={vote} />
         </>
     );
 }

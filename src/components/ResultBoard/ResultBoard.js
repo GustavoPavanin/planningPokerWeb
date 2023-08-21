@@ -1,6 +1,11 @@
 import "./ResultBoard.css";
 
-const ResultBoard = ({moda, media, mediana}) => {
+const ResultBoard = ({frequenciaDeVotos, media, mediana}) => {
+
+    const moda = () =>{
+        Math.max(...frequenciaDeVotos.map(voto => voto[1]));
+    }
+
     return(
         <div className="resultBoard">
             <div> 

@@ -19,6 +19,7 @@ const Room = () => {
 	const nicknameUser = locationInfo.state;
 	const navigate = useNavigate()
 
+
 	window.onload = async () => {
 		navigate("/room/" + roomId);
 	};
@@ -26,6 +27,15 @@ const Room = () => {
 	useEffect(() => {
 		updateRoom();
 	}, []);
+
+	useEffect(() => {
+		console.log(room);
+		if(room.result != null){
+			setViewResults(room.result.viewResults);
+		} else{
+			setViewResults(false);
+		}
+	}, [room]);
 
 	const updateRoom = () =>{
 		if(socket){
@@ -39,15 +49,21 @@ const Room = () => {
 	const onJoin = (payload) => {
         const room = JSON.parse(payload.body);
 		if(room.id == roomId){
-			console.log("igual");
 			setRoom(room);
 		}
     }
 
 	const handleReveal = () => {
-		console.log(selected);
-		// setViewResults(!viewResults);
+		socket.send("/app/revealResult", {}, JSON.stringify(roomId)); 
+		if(viewResults){
+			setViewResults(false)
+		} else{
+			setViewResults(true);
+		}
+		console.log(room);
 	}
+
+	
 
 	const onSelect = (vote) =>{
 		setSelected(vote);
@@ -68,7 +84,7 @@ const Room = () => {
 				</Grid>
 				<Grid item component={Card} xs={12} className="item20" style={backgroundColor}>
 					{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={onSelect} selected={selected}/>}
-					{viewResults && <ResultBoard moda={1} media={2} mediana={3} />}
+					{viewResults && <ResultBoard moda={room.result.frequenciaDeVotos} media={room.result.media} mediana={room.result.mediana} />}
 				</Grid>
 			</Grid>
 		</>

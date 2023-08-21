@@ -6,7 +6,6 @@ const Table = ({users, handleReveal, viewResults}) => {
     const getUsers = (resto) =>{
         const returnUsers = [];
         for (let i = 0; i < users.length; i++) {
-            
             const user = users[i];
             if(i != 1 && i != 2){
                 if(i % 2 == resto){
@@ -16,7 +15,6 @@ const Table = ({users, handleReveal, viewResults}) => {
         }
         return returnUsers
     }
-
     const usersTop = getUsers(0);
     const usersRight = users.at(1);
     const usersLeft = users.at(2);
@@ -29,24 +27,24 @@ const Table = ({users, handleReveal, viewResults}) => {
         <Grid container direction="row" className='users'>
             <Grid item xs={4}>
                 <div className='usersLeft'>
-                    {usersLeft &&<CardUser user={usersLeft} />}
+                    {usersLeft && <CardUser user={usersLeft} viewResults={viewResults} />}
                 </div>
             </Grid>
             <Grid item xs={4}>
                 <div className='usersTop'>
-                    {usersTop.map((user) => <CardUser user={user} />)}
+                    {usersTop.map((user) => <CardUser user={user} viewResults={viewResults}/>)}
                 </div>
                 <div className="table">
                     
                     <Button theme="primary revelar" onClick={handleReveal}>{viewResults ?"Começar nova votação" : "Revelar cartas"}</Button>
                 </div>
                 <div className='usersBotton'>
-                    {usersBotton.map((user) => <CardUser user={user} />)}
+                    {usersBotton.map((user) => <CardUser user={user} viewResults={viewResults}/>)}
                 </div>
             </Grid>
             <Grid item xs={4}>
                 <div className='usersRight'>
-                    {usersRight &&<CardUser user={usersRight} />}
+                    {usersRight &&<CardUser user={usersRight} viewResults={viewResults}/>}
                 </div>
             </Grid> 
         </Grid>
