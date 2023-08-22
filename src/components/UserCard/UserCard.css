@@ -11,6 +11,7 @@
 .vertical-center{
     margin-top: auto;
     margin-bottom: auto;
+    justify-content: center;
 }
 
 .nickName{

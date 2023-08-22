@@ -84,7 +84,7 @@ const Room = () => {
 				</Grid>
 				<Grid item component={Card} xs={12} className="item20" style={backgroundColor}>
 					{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={onSelect} selected={selected}/>}
-					{viewResults && <ResultBoard moda={room.result.frequenciaDeVotos} media={room.result.media} mediana={room.result.mediana} />}
+					{viewResults && <ResultBoard moda={room.result.moda} media={room.result.media} mediana={room.result.mediana} />}
 				</Grid>
 			</Grid>
 		</>

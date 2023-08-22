@@ -15,12 +15,21 @@ const Table = ({users, handleReveal, viewResults}) => {
         }
         return returnUsers
     }
+    const hasSomeVote = () => {
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            if(user.vote != "null" && user.vote != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const someVote = hasSomeVote();
     const usersTop = getUsers(0);
     const usersRight = users.at(1);
     const usersLeft = users.at(2);
     const usersBotton = getUsers(1);
-
-    
     
     return(
         <>
@@ -36,7 +45,7 @@ const Table = ({users, handleReveal, viewResults}) => {
                 </div>
                 <div className="table">
                     
-                    <Button theme="primary revelar" onClick={handleReveal}>{viewResults ?"Começar nova votação" : "Revelar cartas"}</Button>
+                    {someVote && <Button theme="primary revelar" onClick={handleReveal}>{viewResults ?"Começar nova votação" : "Revelar cartas"}</Button>}
                 </div>
                 <div className='usersBotton'>
                     {usersBotton.map((user) => <CardUser user={user} viewResults={viewResults}/>)}

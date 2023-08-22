@@ -1,13 +1,14 @@
 .table{
-    position: absolute;
+    position: relative;
     background-color: #cbffc4;
-    top: 37.5%;
-    left: 35%;
-    width: 59vh;
-    height: 16vh;
-    border-radius: 180px;
+    top: 12%;
+    left: 10%;
+    width: 49vh;
+    height: 15vh;
+    border-radius: 150px;
     background: #C4C4FF;
     box-shadow: 5px 5px 10px 5px rgba(92, 92, 255, 0.66); 
+    
 }
 
 .users{

@@ -17,7 +17,6 @@ const CardUser = ({user, viewResults}) => {
 
     return(
         <div className="item">
-            <div className="vertical-center">
                 <Paper sx={{boxShadow: "none", backgroundColor: "transparent"}}>
                     {user.vote && !viewResults &&
                         <img className='card' src={Card} alt="Card"/>
@@ -27,7 +26,6 @@ const CardUser = ({user, viewResults}) => {
                     }
                 </Paper>
                 <p className="nickName">{user.userName}</p>
-            </div>
         </div>
     );
 }
