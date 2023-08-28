@@ -19,7 +19,6 @@ const Room = () => {
 	const nicknameUser = locationInfo.state;
 	const navigate = useNavigate()
 
-
 	window.onload = async () => {
 		navigate("/room/" + roomId);
 	};

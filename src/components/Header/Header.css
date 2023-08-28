@@ -15,21 +15,6 @@
   border-bottom: 1px solid #BCBCBC;
 }
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 4px;
-  
-  width: 100px;
-  height: 30px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
 .botoes{
   margin-left: auto; 
   margin-right: 0;
@@ -62,3 +47,8 @@ a:active {
 }
 
 a:visited {color: #2C2C2C; text-decoration: none;}
+
+.menuItem{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}

@@ -1,7 +1,8 @@
 import { Paper } from "@mui/material"
 import "./UserCard.css"
-import Card from "../../assets/card.svg";
+
 import VoteCardLabel from "../VoteCard/VoteCardLabel";
+import Img from "../Img/Img";
 const CardUser = ({user, viewResults}) => {
 
     const changeVote = (vote) => {
@@ -19,7 +20,7 @@ const CardUser = ({user, viewResults}) => {
         <div className="item">
                 <Paper sx={{boxShadow: "none", backgroundColor: "transparent"}}>
                     {user.vote && !viewResults &&
-                        <img className='card' src={Card} alt="Card"/>
+                        <Img theme="Card" />
                     }
                     {user.vote && viewResults &&
                         <VoteCardLabel  className='card' vote={changeVote(user.vote)} disabled={true} />

@@ -20,13 +20,7 @@
   font-weight: 700;
   line-height: normal;
 }
-.ilustracao {
-    width: 600px;
-    height: 600px;
-    position: absolute;
-    left: 60%;
-    top: 0px;
-}
+
 .boxtexto{
     width: 600px;
     height: 118px;

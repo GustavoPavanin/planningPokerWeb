@@ -37,7 +37,7 @@ const Join =  ({isOpen, setModalOpen, onlyNick}) => {
                 <FormControl sx={{width: "100%"}}>
                     {!onlyNick && <TextField id="roomId" label="ID da sala" variant="filled" className="TextField"  type="number" sx={TextFieldMargin} onChange={(e) => setRoomId(e.target.value)}/>}
                     <TextField id="nickName" label="Seu apelido" variant="filled" className="TextField"  sx={TextFieldMargin} onChange={(e) => setNickName(e.target.value)}/>
-                    <Button theme="btn primary" onClick={joinRoom}> Entrar na Sala </Button>
+                    <Button theme="btn primary xl no-margin" onClick={joinRoom}> Entrar na Sala </Button>
                 </FormControl>
             </Box>
         </Modal>

@@ -1,10 +1,10 @@
 import Header from '../../components/Header/Header';
 import '../style.css';
-import ilustracao from '../../assets/Ilustração.svg';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
 import JoinModal from '../../components/Modal/Actions/JoinRoom';
 import CreateRoomModal from '../../components/Modal/Actions/CreateRoom';
+import Img from '../../components/Img/Img';
 
 const Home = () => {
 	const [openModalJoin, setOpenModalJoin] = useState(false);
@@ -20,7 +20,7 @@ const Home = () => {
 					<h3>Nossas estimativas divertidas, práticas e descomplicadas.</h3>
 				</div>
 				<div>
-					<img className="ilustracao" src={ilustracao} />
+					<Img theme="Ilustracao" />
 				</div>
 			</div>
 			<div className='boxbotton'>

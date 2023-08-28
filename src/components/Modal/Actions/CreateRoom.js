@@ -39,13 +39,14 @@ const CreateRoom =  ({isOpen, setModalOpen}) => {
                 <h2 className="label" >Escolha o nome da sala e o sistema de votos para criar sala</h2>
 				<FormControl sx={{width: "100%"}}>
 					<InputLabel id="systemLabel">Sistema de votos</InputLabel>
-					<Select labelId="systemLabel" id="system" value={voteSystem} onChange={(event) => setVoteSystem(event.target.value)} label="Sistema de votos" className="TextField" sx={TextFieldMargin}>
+					<Select  
+						labelId="systemLabel" id="system" value={voteSystem} onChange={(event) => setVoteSystem(event.target.value)} label="Sistema de votos" className="TextField" sx={TextFieldMargin}>
 						<MenuItem value={1}>Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, ?)</MenuItem>
 						<MenuItem value={2}>Fibonacci modificado (0, 1/2, 1, 2, 3, 5, 8, 13, 20, 40, ?)</MenuItem>
 						<MenuItem value={3}>Inteiros (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ?)</MenuItem>
 					</Select>
-					<TextField id="roomId" label="Nome da sala" variant="filled" className="TextField" onChange={(event) => setName(event.target.value)} sx={TextFieldMargin}/>
-					<Button theme="btn primary" onClick={onCreateRoom}> Criar uma sala </Button>
+					<TextField sx={TextFieldMargin} id="roomId" label="Nome da sala" variant="filled" className="TextField" onChange={(event) => setName(event.target.value)}/>
+					<Button theme="btn primary xl no-margin" onClick={onCreateRoom}> Criar uma sala </Button>
 				</FormControl>
 			</Box>
 		</Modal>

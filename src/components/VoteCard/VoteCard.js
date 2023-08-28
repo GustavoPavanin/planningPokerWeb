@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./VoteCard.css";
 import VoteCardLabel from "./VoteCardLabel";
 

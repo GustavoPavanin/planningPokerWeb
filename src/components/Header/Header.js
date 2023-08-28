@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import './Header.css';
-import Logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 import JoinModal from '../Modal/Actions/JoinRoom';
 import CreateRoomModal from '../Modal/Actions/CreateRoom';
 import { Menu, MenuItem, Snackbar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Img from '../Img/Img';
+
 const Header = ({currentScreen, nickname}) => {
   const [openModalJoin, setOpenModalJoin] = useState(false);
 	const [openModalCreateRoom, setOpenModalCreateRoom] = useState(false);
@@ -36,7 +37,7 @@ const Header = ({currentScreen, nickname}) => {
   return (
     <>
     <div className='header'>
-      <Link to="/"><img className='logo' src={Logo} alt="All.in logo"/></Link>
+      <Link to="/"> <Img theme="Logo" /> </Link>
       {currentScreen === 'home' && (
         <div className='botoes'>
             <Button theme="secondary"  onClick={() => setOpenModalJoin(true)}>Entrar em uma sala</Button>
@@ -45,9 +46,14 @@ const Header = ({currentScreen, nickname}) => {
       )}
       {currentScreen === 'room' && (
         <div className='botoes'>
-          <p className='nickname' onClick={handleClickMenu}>{nickname} ˅</p>
+          <Button theme="expand" onClick={handleClickMenu}>{nickname}</Button>
             <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
-              <MenuItem onClick={handleCloseMenu}><Link to="/">Sair da sala</Link></MenuItem>
+              <MenuItem onClick={handleCloseMenu} className='menuItem'>
+                <Link to="/">
+                  Sair da sala 
+                  <Img theme="Logout" />
+                </Link>
+              </MenuItem>
             </Menu>
           <Button theme="primary"  copy='true' onClick={copyURL}>Copiar link da sala</Button>
         </div>

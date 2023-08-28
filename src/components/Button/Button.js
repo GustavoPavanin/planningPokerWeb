@@ -1,11 +1,12 @@
 import './Button.css'
-import Copy from '../../assets/file_copy.svg'
+import Img from '../Img/Img';
 const Button = ({theme, onClick, copy, children}) => {
     return (
         <>
         <button className={"btn " +theme} onClick={onClick}>  
-        {copy && <img src={Copy} className='icon'/>}
+        {copy && <Img theme="Copy" />}
         {children}
+        {theme == "expand" && <Img theme="Expand" />}
         </button>
         </>
     );
