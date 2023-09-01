@@ -1,7 +1,9 @@
-import Header from '../../components/Header/Header';
-import '../style.css';
-import Button from '../../components/Button/Button';
 import { useState } from 'react';
+
+import '../style.css';
+
+import Header from '../../components/Header/Header';
+import Button from '../../components/Button/Button';
 import JoinModal from '../../components/Modal/Actions/JoinRoom';
 import CreateRoomModal from '../../components/Modal/Actions/CreateRoom';
 import Img from '../../components/Img/Img';
@@ -11,8 +13,6 @@ const Home = () => {
 	const [openModalCreateRoom, setOpenModalCreateRoom] = useState(false);
     return(
 		<>
-			<JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
-			<CreateRoomModal isOpen={openModalCreateRoom} setModalOpen={() => setOpenModalCreateRoom(!openModalCreateRoom)} />
 			<Header currentScreen='home' /> 
 			<div className="text">
 				<div className='boxtexto'>
@@ -30,7 +30,8 @@ const Home = () => {
 					<Button theme="btn primary" label="Criar uma sala" onClick={() => setOpenModalCreateRoom(true)}>Criar uma sala</Button>
 				</div>
 			</div>
-			
+			<JoinModal isOpen={openModalJoin} setModalOpen={() => setOpenModalJoin(!openModalJoin)} />
+			<CreateRoomModal isOpen={openModalCreateRoom} setModalOpen={() => setOpenModalCreateRoom(!openModalCreateRoom)} />
 		</>
     );
 }

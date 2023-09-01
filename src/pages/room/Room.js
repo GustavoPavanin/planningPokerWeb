@@ -7,6 +7,7 @@ import { CardContent, Grid, Card } from '@mui/material';
 import ResultBoard from '../../components/ResultBoard/ResultBoard';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSocket } from '../../context/socketContext';
+import ErrorFallback from '../../components/Error/Error';
 
 const Room = () => {
 	const { socket } = useSocket();
@@ -20,6 +21,7 @@ const Room = () => {
 	const navigate = useNavigate()
 
 	window.onload = async () => {
+		socket.unsubscribe("/topic/roomCreated");
 		navigate("/room/" + roomId);
 	};
 
@@ -72,20 +74,27 @@ const Room = () => {
     return(
 		<>
 			<Header currentScreen='room' nickname={nicknameUser}/> 
-			<Grid container alignItems="stretch" > 
-				<Grid item component={Card} xs={12} className="item10" style={backgroundColor}>
-					<CardContent className='titulo'>Sala: #{roomId} - {room.name}</CardContent>
+			{room.name &&
+			<>
+				<Grid container alignItems="stretch" > 
+					<Grid item component={Card} xs={12} className="item10" style={backgroundColor}>
+						<CardContent className='titulo'>Sala: #{roomId} - {room.name}</CardContent>
+					</Grid>
 				</Grid>
-			</Grid>
-			<Grid container alignItems="center" > 
-				<Grid item component={Card} xs={12} className="item60" style={backgroundColor}>
-					<Table users={room.users} handleReveal={handleReveal} viewResults={viewResults}/>
+				<Grid container alignItems="center" > 
+					<Grid item component={Card} xs={12} className="item60" style={backgroundColor}>
+						<Table users={room.users} handleReveal={handleReveal} viewResults={viewResults}/>
+					</Grid>
+					<Grid item component={Card} xs={12} className="item20" style={backgroundColor}>
+						{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={onSelect} selected={selected}/>}
+						{viewResults && <ResultBoard moda={room.result.moda} media={room.result.media} mediana={room.result.mediana} />}
+					</Grid>
 				</Grid>
-				<Grid item component={Card} xs={12} className="item20" style={backgroundColor}>
-					{!viewResults && <VoteBoard voteType={room.voteSystem} setSelected={onSelect} selected={selected}/>}
-					{viewResults && <ResultBoard moda={room.result.moda} media={room.result.media} mediana={room.result.mediana} />}
-				</Grid>
-			</Grid>
+			</>
+			}
+			{!room.name &&
+				<ErrorFallback error={{"message": "Talvez a sala que você entrou não existe mais."}}/>
+			}
 		</>
     );
 }

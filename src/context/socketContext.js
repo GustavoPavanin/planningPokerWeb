@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState} from 'react';
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import SOCKET_URL from '../config';
+
 const SocketContext = createContext();
-const SOCKET_URL = 'http://localhost:8080/ws';
 
 export const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
@@ -15,13 +16,6 @@ export const SocketProvider = ({ children }) => {
         setSocket(stompClient);
         
     }, []);
-
-    const joinRoom = (nickName, roomId) =>{
-        socket.send("/app/joinRoom", {}, JSON.stringify({
-            nickName, roomId
-        }));
-    }
-    
 
     return(
         <SocketContext.Provider value ={{socket}}>
