@@ -1,0 +1,26 @@
+.item{
+    width: 69px;
+    height: 104px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 0px 5px 0px 5px;
+}
+
+.vertical-center{
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+}
+
+.nickName{
+    color: #2C2C2C;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    margin: 0px;
+}

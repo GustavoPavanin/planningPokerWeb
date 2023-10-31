@@ -1,36 +1,43 @@
-.Copy{
-    width: 20px;
-    height: 20px;
-    cursor:default; 
-    display: inline-flex;
-    margin-right: 5px;
+.Copy {
+  width: 20px;
+  height: 20px;
+  cursor: default;
+  display: inline-flex;
+  margin-right: 5px;
+}
+
+.Expand {
+  cursor: default;
+  display: inline-flex;
+}
+
+.Card {
+  width: 69px;
+  height: 104px;
+}
+
+.Ilustracao {
+  width: 600;
+  height: 600px;
+  position: absolute;
+  left: 60%;
+  top: 0px;
+}
+
+@media (max-width: 1600px) {
+  .Ilustracao {
+    width: 500px;
+    height: 500px;
   }
-
-.Expand{
-    cursor:default; 
-    display: inline-flex;
 }
 
-.Card{
-    width: 69px;
-    height: 104px;
-}
-
-.Ilustracao{
-    width: 600px;
-    height: 600px;
-    position: absolute;
-    left: 60%;
-    top: 0px;
-}
-
-.Logo{
-    display: flex;
+.Logo {
+  display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 4px;
-  
+
   width: 100px;
   height: 30px;
 
@@ -39,7 +46,7 @@
   flex-grow: 0;
 }
 
-.Logout{
-    vertical-align: middle;
-    margin-left: 5px;
+.Logout {
+  vertical-align: middle;
+  margin-left: 5px;
 }
