@@ -5,6 +5,7 @@ import "../../../index.css";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSocket } from "../../../context/socketContext";
+import uuid from "react-uuid";
 
 const Join = ({ isOpen, setModalOpen, onlyNick }) => {
   const { socket } = useSocket();
@@ -14,6 +15,7 @@ const Join = ({ isOpen, setModalOpen, onlyNick }) => {
   const navigate = useNavigate();
 
   const joinRoom = () => {
+    let id = uuid();
     if (socket) {
       socket.send(
         "/app/joinRoom",
@@ -21,12 +23,13 @@ const Join = ({ isOpen, setModalOpen, onlyNick }) => {
         JSON.stringify({
           nickName,
           roomId,
+          id,
         })
       );
     } else {
       console.log("Cliente STOMP não está conectado.");
     }
-    navigate("/room/" + roomId, { state: nickName });
+    navigate("/room/" + roomId, { state: { nickName, id } });
   };
 
   return (

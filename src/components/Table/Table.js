@@ -2,7 +2,7 @@ import "./Table.css";
 import Button from "../Button/Button";
 import CardUser from "../UserCard/UserCard";
 import { Grid } from "@mui/material";
-const Table = ({ users, handleReveal, viewResults }) => {
+const Table = ({ myUserId, users, handleReveal, viewResults }) => {
   const getUsers = (resto) => {
     const returnUsers = [];
     for (let i = 0; i < users.length; i++) {
@@ -25,6 +25,7 @@ const Table = ({ users, handleReveal, viewResults }) => {
     return false;
   };
 
+  const myUser = users.at(users.findIndex((user) => user.id == myUserId));
   const someVote = hasSomeVote();
   const revealButton = someVote || viewResults;
   const usersTop = getUsers(0);
@@ -49,7 +50,7 @@ const Table = ({ users, handleReveal, viewResults }) => {
             ))}
           </div>
           <div className="table">
-            {revealButton && (
+            {myUser.owner && revealButton && (
               <Button theme="primary revelar" onClick={handleReveal}>
                 {viewResults ? "Começar nova votação" : "Revelar cartas"}
               </Button>

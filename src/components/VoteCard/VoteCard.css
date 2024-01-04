@@ -1,39 +1,43 @@
-.voteCard{
-    border-radius: 16px;
-    border: 3px solid #5C5CFF;
-    background: #F2F2F2;
-    margin: 5px;
-    color:#5C5CFF;
-    font-style: normal;
-    font-weight: 700;
-    text-align: center;
-
+.voteCard {
+  border-radius: 16px;
+  border: 3px solid #5c5cff;
+  background: #f2f2f2;
+  margin: 5px;
+  color: #5c5cff;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+}
+.voteCard:hover {
+  background: #e6e6ff;
 }
 
-.large{
-    width: 8.8vh;
-    height: 13.7vh;
-    font-size: 42px;
-    line-height: 14vh;
+.voteCard:active {
+  background: #ccccff;
+}
+.large {
+  width: 8.8vh;
+  height: 13.7vh;
+  font-size: 42px;
+  line-height: 14vh;
 }
 
-.small{
-    width: 69px;
-    height: 104px;
-    font-size: 21px;
-    line-height: 10.5vh;
-
+.small {
+  width: 69px;
+  height: 104px;
+  font-size: 21px;
+  line-height: 10.5vh;
 }
 
-.selected{
-    background: #5C5CFF;
+.selected {
+  background: #5c5cff;
 }
 
-input[type="radio"]{
-    display: none;
- }
+input[type="radio"] {
+  display: none;
+}
 
-input[type="radio"]:checked + label{
-   background: #5C5CFF;
-   color: #F2F2F2;
+input[type="radio"]:checked + label {
+  background: #5c5cff;
+  color: #f2f2f2;
 }

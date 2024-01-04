@@ -50,7 +50,7 @@ const Hall = () => {
           justifyContent="center"
         >
           {rooms.map((room) => (
-            <RoomCard id={room.id} name={room.name} />
+            <RoomCard id={room.id} name={room.name} qtUsers={room.qtUsers} />
           ))}
         </Grid>
       )}

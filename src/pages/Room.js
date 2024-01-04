@@ -17,7 +17,8 @@ const Room = () => {
   const backgroundColor = { backgroundColor: "transparent", boxShadow: "none" };
   const locationInfo = useLocation();
   const roomId = parseInt(locationInfo.pathname.substring(6));
-  const nicknameUser = locationInfo.state;
+  const nicknameUser = locationInfo.state.nickName;
+  const userId = locationInfo.state.id;
   const navigate = useNavigate();
 
   window.onload = async () => {
@@ -96,6 +97,7 @@ const Room = () => {
               style={backgroundColor}
             >
               <Table
+                myUserId={userId}
                 users={room.users}
                 handleReveal={handleReveal}
                 viewResults={viewResults}
