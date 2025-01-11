@@ -1,10 +1,8 @@
-import { Box, Card, CardActions, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import "./RoomCard.css";
-import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import Img from "../Img/Img";
 
-const RoomCard = ({ id, name, qtUsers }) => {
+const RoomCard = ({ id, name }) => {
   const navigate = useNavigate();
   return (
     <Box sx={{ padding: 2 }}>
@@ -30,7 +28,7 @@ const RoomCard = ({ id, name, qtUsers }) => {
         onClick={() => navigate("/room/" + id)}
       >
         <CardContent sx={{ textAlign: "center" }}>
-          <h3>{name}</h3>
+          <h3>{id + " - " + name}</h3>
           <Box
             sx={{
               justifyContent: "center",
@@ -38,12 +36,7 @@ const RoomCard = ({ id, name, qtUsers }) => {
               flexDirection: "row",
               alignItems: "center",
             }}
-          >
-            <Img theme="Person" />
-            <label style={{ fontWeight: "bold", paddingLeft: 5 }}>
-              {qtUsers}
-            </label>
-          </Box>
+          ></Box>
         </CardContent>
       </Card>
     </Box>

@@ -1,44 +1,37 @@
 import { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect } from "react";
-import { useSocket } from "../context/socketContext";
 import RoomCard from "../components/RoomCard/RoomCard";
 import Header from "../components/Header/Header";
 import "../index.css";
 import EmptyHall from "../components/ViewMessages/EmptyHall";
+import { fetchRooms } from "../service/roomService";
 const Hall = () => {
-  const { socket } = useSocket();
   const [rooms, setRooms] = useState([]);
-
-  window.onload = async () => {
-    updateRoom();
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    updateRoom();
+    const loadRooms = async () => {
+      try {
+        const roomsData = await fetchRooms();
+        setRooms(roomsData); // Atualiza o estado com a lista de salas
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadRooms();
   }, []);
 
-  const updateRoom = () => {
-    if (socket) {
-      socket.subscribe("/topic/getRoomForHall", onResponse);
-      socket.send("/app/getRoomForHall", {}, {});
-    } else {
-      console.log("Cliente STOMP não está conectado.");
-    }
-  };
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
 
-  const onResponse = (payload) => {
-    const body = JSON.parse(payload.body);
-    console.log(body);
-
-    setRooms(body);
-  };
-
-  const onCreateRoom = (payload) => {
-    const room = JSON.parse(payload.body);
-    setRooms((rooms) => [...rooms, room]);
-  };
-
+  if (error) {
+    return <p>Erro: {error}</p>;
+  }
   return (
     <>
       <Header currentScreen="hall" />
@@ -50,7 +43,7 @@ const Hall = () => {
           justifyContent="center"
         >
           {rooms.map((room) => (
-            <RoomCard id={room.id} name={room.name} qtUsers={room.qtUsers} />
+            <RoomCard id={room.id} name={room.name} />
           ))}
         </Grid>
       )}
